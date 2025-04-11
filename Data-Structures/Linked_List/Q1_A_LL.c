@@ -71,7 +71,6 @@ int main()
 		case 3:
 			printf("The resulting sorted linked list is: ");
 			printList(&ll);
-			removeAllItems(&ll);
 			break;
 		case 0:
 			removeAllItems(&ll);
@@ -90,7 +89,34 @@ int main()
 
 int insertSortedLL(LinkedList *ll, int item)
 {
-	/* add your code here */
+	ListNode *cur = ll->head; // 현재 탐색 위치, 노드를 가리키는 포인터 변수 선언. ll 구조체 안의 head 접근
+	int index = 0; // 참조할 인덱스 0으로 초기화
+
+	if (cur == NULL || item < cur->item ){ // 리스트가 비어있거나 || cur(head)의 item에 접근(->)해서 주입된 item와 비교, 0번 노드의 값보다 작으면 가장 앞에 삽입 필요
+		insertNode(ll, index, item); // insertNode 실행해서 ll의 0번에 item 삽입
+		return 0; // 더이상 루프를 돌지 않게 리턴.
+	} else if (item == cur->item) {
+		return -1;
+	}
+
+	// 앞이 아닐 경우, 리스트를 순회해서 삽입할 자리 탐색
+	// cur->next != NULL 다음 노드의 포인터를 참조했을 때, 비어있지 않다 == 다음 노드가 있다.
+	// cur->next->item (다음 노드의 아이템) 이 현재 삽입하려는 값보다 작을때
+	// 다음 노드가 없거나(끝에 서있거나), 지금 존재하는 노드의 아이템이 나보다 클 때(여기가 삽입할 자리) 까지 계속 증가
+	while (cur->next != NULL && cur->next->item < item){
+		cur = cur->next;
+		index++;
+	}
+
+	if (cur->next == NULL || cur->next->item != item){
+		// 맞는 자리를 찾아갔을 때 insertNode 함수 호출
+		insertNode(ll, index + 1, item);
+		return index + 1;
+	}
+
+	// item이 현재 i보고있는 아이템과 같을 때
+
+	return -1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
