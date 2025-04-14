@@ -103,6 +103,29 @@ int main()
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
 	/* add your code here */
+	// 전체 size에서 반(//) 나눈 값 -> backList->size
+	// size - backList->size = frontList->size
+
+	// 위 두 값을 기반으로 인덱스 추출
+
+	// frontList는 기존 리스트의 head를 선언해주고,
+	// backList->head == 인덱스 값 기반으로, 이어서 선언
+	// backList 뺄 때 
+	int halfSize = ll->size / 2; // 5일경우, 2 출력. backList 시작 index = 3
+	int backIndex = halfSize + 1;
+
+	ListNode *cur;
+	int i = 0;
+	while ((cur = findNode(ll, backIndex)) != NULL){
+		int value = cur->item;
+		removeNode(ll, backIndex);
+		insertNode(resultBackList,i,value);
+		i++;
+	}
+	resultFrontList->head = ll->head;
+	ll->head = NULL;
+	ll->size = 0;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
