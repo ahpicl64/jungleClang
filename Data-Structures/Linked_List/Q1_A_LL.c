@@ -107,9 +107,9 @@ int insertSortedLL(LinkedList *ll, int item)
 		cur = cur->next;
 		index++;
 	}
-
+	// 맞는 자리를 찾아갔을 때 insertNode 함수 호출
+	// 중복방지 next->item != item
 	if (cur->next == NULL || cur->next->item != item){
-		// 맞는 자리를 찾아갔을 때 insertNode 함수 호출
 		insertNode(ll, index + 1, item);
 		return index + 1;
 	}
