@@ -89,6 +89,46 @@ int main()
 int moveMaxToFront(ListNode **ptrHead)
 {
     /* add your code here */
+	// temp = 0을 놓고, node 하나 씩 옮겨주면서, item이랑 비교, temp < item 이면 temp == item
+	// 이후 next == NULL이면, 종료하고 현재 temp를 head로
+	// temp값 저장할 때 해당 위치의 노드 인덱스도 저장
+	// delete node로 해당 값 삭제 후,
+	// temp값이 item인 node를 head로 저장
+	// 위 내용 전부 폐기. 포인트 조작으로 해야함
+
+	// why? 들어오는 ll의 정보가 없음. size, head 등등..
+	ListNode *cur = *ptrHead;
+	ListNode *tempNode, *tempFront, *prev;
+	int temp = 0;
+	
+	if (*ptrHead == NULL)
+		return 0;
+	while (cur != NULL){
+		if (temp < cur->item){
+			temp = cur->item;
+			tempNode = cur;
+			tempFront = prev;
+		}
+		prev = cur; // 이게 좀 애매한데.. tempNode의 바로 앞 node만을 가리켜야하는데, 지금 상태로는 그냥 갈때마다 옮겨줌 // prev 만드는거로 해결
+		cur = cur->next;
+	}
+	tempFront->next = tempNode->next;
+	tempNode->next = *ptrHead;
+	*ptrHead = tempNode;
+		// temp가 마지막으로 저장될 인덱스만 따로 어떻게 저장하지?
+		// 이대로 i++만 해주면 그냥 size랑 같아짐.
+		// index를 놓고 계속 올려주고, 만약 if문으로 temp문으로 올리게되면, tempindex를 따로 설정해서 저장해주기.
+	// while문 종료시, 가장 큰 값과 그 값의 인덱스가 나와있는 상황
+	// tempIndex로, 값 삭제해주기
+	// removeNode(ll, tempIndex);
+	// 노드로 따로 빼줬어야했나? 새 노드로 빼고, next를 head로, head를 새 노드로 바꿔주기?
+	// insertNode(ll, 0, tempIndex);
+
+	// remove, insert 다 직접 만들어주기
+	// 삭제 후 insert head
+
+	
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////
