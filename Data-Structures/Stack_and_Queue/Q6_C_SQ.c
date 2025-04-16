@@ -113,11 +113,12 @@ void removeUntil(Stack *s, int value)
 {
 	//base case (stack이 비었을 경우. ) -> 원하는 수가 없을 수 있음
 	int item;
-	if (isEmptyStack(s))
-		return;
 	// 같은 수가 나오면, pop을 멈추고, 원래 값을 push하고 종료
-	while (value != item){
+	while (!isEmptyStack(s)){
 		item = pop(s);
+		if (value == item){
+			break;
+		}
 	}
 	push(s,item);
 }
