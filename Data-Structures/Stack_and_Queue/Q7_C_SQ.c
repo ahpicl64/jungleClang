@@ -105,6 +105,39 @@ int main()
 int balanced(char *expression)
 {
 /* add your code here */
+	// 쭉 입력된 스트링만 받고
+	// 길이 체크해서 반은 스택에 반은 큐에 넣으면 좋을거 같긴한데.. 여기는 스택만 사용하게 함수가 남아있음
+	// 스택으로 문자열의 밸런스 체크...
+	// return 1 == 밸런스가 안맞을 때, return 0 == 밸런스가 맞을 때
+	// string 배열에서 하나씩빼서 열린괄호면, stack에 넣고 닫힌괄호면 pop해서 대조
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+	int i;
+
+	for (i = 0; expression[i] != '\0'; i++){ // 문자열 배열 종료시, 마지막은 \0이 들어감
+		char item = expression[i];
+		if (item == '(' || item == '[' || item == '{'){
+			push(&s, item);
+		} else {
+			if (isEmptyStack(&s)) return 1;
+
+			char compareStr = pop(&s);
+			switch (item) {
+				case ')':
+					if (compareStr != '(') return 1;
+					break;
+				case ']':
+					if (compareStr != '[') return 1;
+					break;
+				case '}':
+					if (compareStr != '{') return 1;
+					break;
+			}
+		}
+		if (!isEmptyStack(&s)) return 1;
+	}
+	return 0;
 }
 
 ////////////////////////////////////////////////////////////
