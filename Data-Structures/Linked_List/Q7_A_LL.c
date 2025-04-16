@@ -87,9 +87,7 @@ int main()
 
 void RecursiveReverse(ListNode **ptrHead)
 {
-	ListNode *cur = *ptrHead; // head부터 시작
-	
-
+	/* add your code here */
 }
 
 //////////////////////////////////////////////////////////////////////////////////
