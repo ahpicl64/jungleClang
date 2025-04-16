@@ -103,7 +103,24 @@ int main()
 
 int isStackPairwiseConsecutive(Stack *s)
 {
-  /* add your code here */
+	// 스택의 숫자들이 쌍으로 연속되는지 검사하는 함수?
+	// boolean이 없으니까 0또는 1로 return해줘야, 이후 프린트문에서 if, else로 출력 가능
+	// pop을 사용하니까. pop으로 쭉 꺼내고, 연속되는지 확인
+	// 6개짜리 스택의 경우, 1-2 3-4 5-6 연속되는지 2개씩 쌍으로 확인
+	// 인덱스를 따로 관리해서, 비교 숫자를 1,2, 순서로 넣고 인덱스가 짝수인 순간에 비교를 하게
+	// 비교하고, 연속되지 않은게 나오자마자 이탈하게
+
+	int compareNum1, compareNum2;
+	while(!isEmptyStack(s)){ // 스택이 빌때까지 순회
+		// 인덱스가 짝수일 경우 검사 시작
+		compareNum1 = pop(s);
+		compareNum2 = pop(s);
+		if (abs(compareNum1-compareNum2) != 1){
+			return 0;
+		}
+	}
+	compareNum1, compareNum2 = 0;
+	return 1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
