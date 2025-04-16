@@ -119,7 +119,6 @@ int isStackPairwiseConsecutive(Stack *s)
 			return 0;
 		}
 	}
-	compareNum1, compareNum2 = 0;
 	return 1;
 }
 
