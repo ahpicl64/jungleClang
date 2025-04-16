@@ -109,7 +109,13 @@ int main()
 
 void recursiveReverse(Queue *q)
 {
-/* add your code here */
+	//base case
+	int item;
+	if(isEmptyQueue(q))
+		return;
+	item = dequeue(q);
+	recursiveReverse(q);
+	enqueue(q,item);
 }
 
 //////////////////////////////////////////////////////////////////
@@ -120,7 +126,7 @@ void removeAllItemsFromQueue(Queue *q)
 	if (q == NULL)
 		return;
 	count = q->ll.size;
-
+ 
 	for (i = 0; i < count; i++)
 		dequeue(q);
 }
